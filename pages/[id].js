@@ -2,6 +2,9 @@ import Layout from '../components/layout';
 import Date from '../components/date/date.component';
 import { getAllBlogPostIds, getBlogPostDataById } from '../lib/blogs';
 import utilStyles from '../styles/utils.module.css'
+
+
+
 export async function getStaticPaths() {
   const paths = getAllBlogPostIds();
   return {
