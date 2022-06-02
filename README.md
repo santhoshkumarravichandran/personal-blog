@@ -17,7 +17,8 @@ A simple personal blog using react and nest
 - Dynamic routes
 - Page depending on external resource
 
-
+- Linking pages with useRouter()
+  - 
 
 
 # Dependency / Libraries used in the project
