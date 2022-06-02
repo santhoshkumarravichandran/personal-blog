@@ -8,6 +8,7 @@ import { getSortedBlogData } from '../lib/blogs';
 
 export async function getStaticProps() {
   const allPostsData = await getSortedBlogData();
+  console.log(allPostsData)
   return {
     props: {
       allPostsData,
@@ -35,7 +36,8 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={id}>{title}
+              <Link href={id}>
+                <a>{title} </a> 
               </Link>
               <br />
               <Date dateString={date}></Date>
