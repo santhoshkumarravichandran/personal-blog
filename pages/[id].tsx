@@ -1,4 +1,5 @@
-import Layout from '../components/layout';
+import React from 'react';
+import { IPost } from './interfaces';
 import Date from '../components/date/date.component';
 import { getAllBlogPostIds, getBlogPostDataById } from '../lib/blogs';
 import utilStyles from '../styles/utils.module.css';
@@ -20,14 +21,15 @@ export async function getStaticProps({ params }) {
     };
 }
 
-export default function Post({ blogPostData }) {
+const Post = ({ title, date, contentHtml }: IPost) => {
     return (
-        <Layout>
-            <h2 className={utilStyles.headingLg}> {blogPostData.title}</h2>
+        <>
+            <h2 className={utilStyles.headingLg}> {title}</h2>
             <br />
-            <Date dateString={blogPostData.date}></Date>
+            <Date date={date}></Date>
             <br />
-            <div dangerouslySetInnerHTML={{ __html: blogPostData.contentHtml }} />
-        </Layout>
+            <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </>
     );
-}
+};
+export default Post;

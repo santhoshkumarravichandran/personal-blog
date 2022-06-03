@@ -13,7 +13,6 @@ const blogsDirectory = path.join(process.cwd(), 'blogs');
  */
 export function getAllBlogPostIds() {
     const postNames = fs.readdirSync(blogsDirectory);
-
     return postNames.map((postName) => {
         return {
             params: {
@@ -64,7 +63,7 @@ export async function getSortedBlogData() {
         };
     });
     // Sort posts by date
-    return allBlogData.sort(({ date: a }, { date: b }) => {
+    return allBlogData.sort((a, b) => {
         if (a < b) {
             return 1;
         } else if (a > b) {
