@@ -1,14 +1,14 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
-import Date from '../components/date/date.component';
+import Layout from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-
+import { TITLE } from '../config/constants';
+import { IPostData } from './interfaces';
 import { getSortedBlogData } from '../lib/blogs';
 
 export async function getStaticProps() {
     const allPostsData = await getSortedBlogData();
-    console.log(allPostsData);
     return {
         props: {
             allPostsData,
@@ -16,11 +16,11 @@ export async function getStaticProps() {
     };
 }
 
-export default function Home({ allPostsData }) {
+const HomeComponent = (allPostsData: IPostData[]) => {
     return (
         <Layout home>
             <Head>
-                <title>{siteTitle}</title>
+                <title>{TITLE}</title>
             </Head>
             <section className={utilStyles.headingMd}>
                 <p>
@@ -40,17 +40,19 @@ export default function Home({ allPostsData }) {
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
                 <h2 className={utilStyles.headingLg}>Recent Blogs</h2>
                 <ul className={utilStyles.list}>
-                    {allPostsData.map(({ id, date, title }) => (
+                    {/* {allPostsData?.map(({ id, date, title }: IPostData) => (
                         <li className={utilStyles.listItem} key={id}>
                             <Link href={id}>
                                 <a>{title} </a>
                             </Link>
                             <br />
-                            <Date dateString={date}></Date>
+                            <Date date={date}></Date>
                         </li>
-                    ))}
+                    ))} */}
                 </ul>
             </section>
         </Layout>
     );
-}
+};
+
+export default HomeComponent;
